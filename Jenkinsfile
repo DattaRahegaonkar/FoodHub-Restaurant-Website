@@ -30,7 +30,8 @@ pipeline{
                     sh """
                         ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} '
                         sudo rm -rf /var/www/html/* && 
-                        sudo cp -r /home/ubuntu/* /var/www/html/'
+                        sudo mkdir -p /var/www/html/foodhub &&
+                        sudo cp -r /home/ubuntu/* /var/www/html/foodhub/'
                     """
                 }
             }
