@@ -5,7 +5,7 @@ pipeline{
         SERVER_IP      = '172.31.17.99'
         SSH_CREDENTIAL = 'target-server-ssh'
         REMOTE_USER    = 'ubuntu'
-        REMOTE_PATH    = '/home/ubuntu'
+        REMOTE_PATH    = '/home/ubuntu/foodhub'
     }
 
     stages{
@@ -18,7 +18,7 @@ pipeline{
             steps{
                 sshagent([SSH_CREDENTIAL]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP}
+                        ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} 'mkdir -p ${REMOTE_PATH}'
                         scp -o StrictHostKeyChecking=no -r * ${REMOTE_USER}@${SERVER_IP}:${REMOTE_PATH}/
                     """
                 }
